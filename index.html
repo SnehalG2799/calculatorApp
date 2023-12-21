@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <input id="answer" type="text" maxlength="10" value="0" class="input" readonly>
+        <div class="buttons">
+            <div class="row">
+                <div class="btn">7</div>
+                <div class="btn">8</div>
+                <div class="btn">9</div>
+                <div class="btn delete">DEL</div>
+            </div>
+
+            <div class="row">
+                <div class="btn">4</div>
+                <div class="btn">5</div>
+                <div class="btn">6</div>
+                <div class="btn">+</div>
+            </div>
+
+            <div class="row">
+                <div class="btn">1</div>
+                <div class="btn">2</div>
+                <div class="btn">3</div>
+                <div class="btn">-</div>
+            </div>
+
+            <div class="row">
+                <div class="btn">.</div>
+                <div class="btn">0</div>
+                <div class="btn">/</div>
+                <div class="btn">*</div>
+            </div>
+
+            <div class="row">
+                <div class="btn reset">RESET</div>
+                <div class="btn equal">=</div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var allbtn = document.querySelectorAll('.btn');
+        var answer = document.getElementById('answer');
+
+        allbtn.forEach((button) => {
+            console.log(button)
+            button.addEventListener('click', () => {
+
+                if (button.innerHTML == '.' && answer.value.indexOf(".") == -1) {
+                    answer.value = answer.value + '.';
+                }
+
+                if (button.innerHTML == 'DEL') {
+                    answer.value = answer.value.slice(0, -1)
+                }
+
+                if (button.innerHTML == 'RESET') {
+                    answer.value = 0
+                }
+
+                if (button.innerHTML == '=') {
+                    console.log(eval(answer.value))
+                    answer.value = eval(answer.value)
+                }
+
+                if (button.innerHTML != 'DEL' && button.innerHTML != '=' && button.innerHTML != 'RESET' && button.innerHTML != '.') {
+                    if (answer.value == 0) {
+                        answer.value = button.innerHTML;
+                    } else {
+                        answer.value = answer.value + button.innerHTML
+                    }
+                }
+
+            })
+        });
+
+    </script>
+</body>
+</html>
